@@ -45,15 +45,18 @@
     </div>
 
     <script src="script.js"></script>
+    <!-- Rejestracja service workera -->
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(function() {
-                    console.log('Service Worker zarejestrowany poprawnie.');
-                })
-                .catch(function(error) {
-                    console.error('Błąd podczas rejestracji Service Workera:', error);
-                });
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker zarejestrowany:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Rejestracja service workera nie powiodła się:', error);
+                    });
+            });
         }
     </script>
 </body>
