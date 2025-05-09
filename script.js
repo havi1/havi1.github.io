@@ -43,3 +43,44 @@ window.onload = () => {
         showLoginPage();
     }
 };
+
+// API URL
+const apiUrl = 'http://localhost:3000/api/users';
+
+// Funkcja tworzenia użytkownika
+const createUser = async (username, password) => {
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
+
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
+        }
+
+        const data = await response.json();
+        console.log(data.message); // Komunikat z serwera
+        alert('Rejestracja zakończona sukcesem!');
+        showLoginPage(); // Po rejestracji przekierowanie do logowania
+    } catch (error) {
+        console.error('Błąd podczas tworzenia użytkownika:', error);
+        alert('Wystąpił błąd podczas rejestracji. Spróbuj ponownie.');
+    }
+};
+
+// Wywołanie funkcji createUser() po kliknięciu przycisku "Zarejestruj"
+const registerButton = document.getElementById('registerButton');
+registerButton.addEventListener('click', () => {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    createUser(username, password);
+});
+
+// Wywołanie logowania po kliknięciu przycisku "Zaloguj"
+const loginButton = document.getElementById('loginButton');
+loginButton.addEventListener('click', login);

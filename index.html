@@ -8,13 +8,25 @@
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
+    <!-- Formularz logowania -->
     <div id="loginPage">
         <h1>Logowanie</h1>
         <input type="text" id="username" placeholder="Nazwa użytkownika">
         <input type="password" id="password" placeholder="Hasło">
-        <button onclick="login()">Zaloguj</button>
+        <button id="loginButton">Zaloguj</button>
+        <p>Nie masz konta? <button id="showRegisterForm">Zarejestruj się</button></p>
     </div>
 
+    <!-- Formularz rejestracji -->
+    <div id="registerPage" style="display:none;">
+        <h1>Rejestracja</h1>
+        <input type="text" id="registerUsername" placeholder="Nazwa użytkownika">
+        <input type="password" id="registerPassword" placeholder="Hasło">
+        <button id="registerButton">Zarejestruj</button>
+        <p>Masz już konto? <button id="showLoginForm">Zaloguj się</button></p>
+    </div>
+
+    <!-- Dashboard -->
     <div id="dashboard" style="display:none;">
         <header>
             <h1>Dashboard</h1>
@@ -28,10 +40,10 @@
             </ul>
         </nav>
         <main>
-            <!-- Treść głównego panelu -->
             <p>Witaj użytkowniku!</p>
         </main>
     </div>
+
     <script src="script.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
